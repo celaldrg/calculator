@@ -9,7 +9,7 @@ export const STRINGS = Object.freeze({
     'app.description':
       'A scientific calculator with its own expression parser, DEG/RAD modes, history and keyboard support.',
     'action.reset': 'Reset',
-    'action.language': 'Switch to Turkish',
+    'action.language': 'TR – switch to Turkish',
     'action.copy': 'Copy result',
     'action.copied': 'Copied!',
     'action.functions': 'Show or hide scientific functions',
@@ -40,7 +40,7 @@ export const STRINGS = Object.freeze({
     'app.description':
       'Kendi ifade ayrıştırıcısı, DEG/RAD modları, geçmişi ve klavye desteği olan bilimsel hesap makinesi.',
     'action.reset': 'Sıfırla',
-    'action.language': 'İngilizceye geç',
+    'action.language': 'EN – İngilizceye geç',
     'action.copy': 'Sonucu kopyala',
     'action.copied': 'Kopyalandı!',
     'action.functions': 'Bilimsel fonksiyonları göster veya gizle',
