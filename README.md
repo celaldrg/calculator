@@ -1,6 +1,6 @@
 # Scientific Calculator - a fast, keyboard-friendly scientific calculator with its own parser, no eval
 
-[![tests](https://github.com/celaldrg/calculator/actions/workflows/test.yml/badge.svg)](https://github.com/celaldrg/calculator/actions/workflows/test.yml)
+[![tests: node --test](https://img.shields.io/badge/tests-node_----test-blue)](#tests)
 [![license: MIT](https://img.shields.io/badge/license-MIT-22d3ee.svg)](LICENSE)
 
 **▶ Play now: https://celaldrg.github.io/calculator/**
