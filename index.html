@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Scientific Calculator</title>
+    <meta
+      name="description"
+      content="A scientific calculator with its own expression parser, DEG/RAD modes, history and keyboard support."
+    />
+    <meta name="theme-color" content="#0f172a" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Scientific Calculator" />
+    <meta
+      property="og:description"
+      content="A scientific calculator with its own expression parser, DEG/RAD modes, history and keyboard support."
+    />
+    <meta property="og:url" content="https://celaldrg.github.io/calculator/" />
+    <meta property="og:image" content="https://celaldrg.github.io/calculator/docs/screenshot.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2322d3ee'/%3E%3Crect x='7' y='6' width='18' height='7' rx='2' fill='%230f172a'/%3E%3Cg fill='%230f172a'%3E%3Crect x='7' y='16' width='4' height='4' rx='1'/%3E%3Crect x='14' y='16' width='4' height='4' rx='1'/%3E%3Crect x='21' y='16' width='4' height='4' rx='1'/%3E%3Crect x='7' y='22' width='4' height='4' rx='1'/%3E%3Crect x='14' y='22' width='4' height='4' rx='1'/%3E%3Crect x='21' y='22' width='4' height='4' rx='1'/%3E%3C/g%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="src/main.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+          <defs>
+            <linearGradient id="brand-gradient" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#67e8f9" />
+              <stop offset="1" stop-color="#0891b2" />
+            </linearGradient>
+          </defs>
+          <rect width="32" height="32" rx="8" fill="url(#brand-gradient)" />
+          <rect x="7" y="6" width="18" height="7" rx="2" fill="#0f172a" />
+          <g fill="#0f172a">
+            <rect x="7" y="16" width="4" height="4" rx="1" />
+            <rect x="14" y="16" width="4" height="4" rx="1" />
+            <rect x="21" y="16" width="4" height="4" rx="1" />
+            <rect x="7" y="22" width="4" height="4" rx="1" />
+            <rect x="14" y="22" width="4" height="4" rx="1" />
+            <rect x="21" y="22" width="4" height="4" rx="1" />
+          </g>
+        </svg>
+        <h1 data-i18n="app.title">Scientific Calculator</h1>
+      </div>
+      <div class="topbar-actions">
+        <button type="button" class="btn" id="reset-btn" data-i18n-aria="action.reset" data-i18n-title="action.reset">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path
+              d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4h4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <span class="btn-label" data-i18n="action.reset">Reset</span>
+        </button>
+        <button type="button" class="btn btn-lang" id="lang-btn" data-i18n-aria="action.language" data-i18n-title="action.language">
+          TR
+        </button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="card calc" id="calc">
+        <div class="display" id="display" role="group" data-i18n-aria="display.label">
+          <div class="display-top">
+            <span class="badge" id="mode-badge">DEG</span>
+            <span class="ans-label" id="ans-label"></span>
+            <span class="copy-status" id="copy-status" role="status" aria-live="polite"></span>
+            <button type="button" class="icon-btn" id="copy-btn" data-i18n-aria="action.copy" data-i18n-title="action.copy">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <rect x="9" y="9" width="11" height="11" rx="2.5" fill="none" stroke="currentColor" stroke-width="2" />
+                <path
+                  d="M5 15V6.5A2.5 2.5 0 0 1 7.5 4H15"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="expr" id="expr"></div>
+          <div class="preview" id="preview"></div>
+          <output class="result" id="result" aria-live="polite"></output>
+        </div>
+
+        <div class="toolbar">
+          <button type="button" class="angle-toggle" id="angle-btn">
+            <span data-mode="DEG">DEG</span>
+            <span data-mode="RAD">RAD</span>
+          </button>
+          <button
+            type="button"
+            class="btn fn-toggle"
+            id="fn-btn"
+            aria-expanded="false"
+            aria-controls="sci-pad"
+            data-i18n-aria="action.functions"
+            data-i18n-title="action.functions"
+          >
+            <span data-i18n="action.functionsShort">fn</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+              <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+          </button>
+          <p class="hint" data-i18n="hint.keyboard">Keyboard: type freely · Enter = · Esc clears · Backspace deletes</p>
+        </div>
+
+        <div class="pads">
+          <div class="keypad sci-pad" id="sci-pad"></div>
+          <div class="keypad main-pad" id="main-pad"></div>
+        </div>
+      </section>
+
+      <aside class="card history" aria-labelledby="history-title">
+        <div class="history-head">
+          <h2 id="history-title" data-i18n="history.title">History</h2>
+          <button type="button" class="text-btn" id="clear-history" data-i18n="history.clear">Clear history</button>
+        </div>
+        <p class="history-empty" id="history-empty" data-i18n="history.empty">No calculations yet</p>
+        <ol class="history-list" id="history-list"></ol>
+      </aside>
+    </main>
+
+    <footer class="footer">
+      MIT · <a href="https://github.com/celaldrg/calculator" data-i18n="footer.source">Source on GitHub</a>
+    </footer>
+  </body>
+</html>

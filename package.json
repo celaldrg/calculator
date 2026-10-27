@@ -1,0 +1,11 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "description": "Scientific calculator with its own expression parser, DEG/RAD modes, history and an EN/TR interface. Vanilla JS, no dependencies.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  },
+  "license": "MIT"
+}
