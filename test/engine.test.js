@@ -265,4 +265,9 @@ describe('errors', () => {
       assert.equal(errorOf(expression).code, ERROR.OVERFLOW, expression);
     }
   });
+  test('extremely deep nesting is an overflow error, not a crash', () => {
+    const depth = 100000;
+    assert.equal(errorOf(`${'('.repeat(depth)}1${')'.repeat(depth)}`).code, ERROR.OVERFLOW);
+    assert.equal(valueOf(`${'('.repeat(50)}1${')'.repeat(50)}`), 1);
+  });
 });

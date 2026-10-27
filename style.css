@@ -137,6 +137,10 @@ h1 {
 }
 
 .footer a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 6px;
   color: var(--accent);
   text-decoration: none;
 }

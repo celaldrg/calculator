@@ -1,4 +1,4 @@
-import { CalcError } from './errors.js';
+import { CalcError, ERROR } from './errors.js';
 import { evaluate } from './evaluator.js';
 import { formatNumber } from './format.js';
 import { ANGLE_MODES } from './functions.js';
@@ -24,6 +24,8 @@ export function calculate(expression, { angleMode = ANGLE_MODES.DEG, ans = 0 } =
     return { ok: true, value, display: formatNumber(value) };
   } catch (error) {
     if (error instanceof CalcError) return { ok: false, error: { code: error.code, ...error.details } };
+    // Extremely deep nesting exhausts the call stack of the recursive parser/evaluator.
+    if (error instanceof RangeError) return { ok: false, error: { code: ERROR.OVERFLOW } };
     throw error;
   }
 }
